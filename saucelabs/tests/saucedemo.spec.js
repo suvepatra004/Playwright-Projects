@@ -12,6 +12,7 @@ test.beforeEach(async ({ page }) => {
   await expect(page).toHaveURL(/inventory.html/);
 });
 
+// Using POM or Script Framework
 test("Login to Sauce Demo website", async ({ page }) => {
   const loginPage = new LoginPage(page);
 
