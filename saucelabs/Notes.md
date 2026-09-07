@@ -64,7 +64,7 @@
 ```
 - Remove added Items
 - Redirect back to shopping
-- Move forward to **Checkout**
+- Move forward to Checkout
 ```
 
 #### 5. Sidebar
@@ -79,4 +79,8 @@
 
 ```
 - Enter First name, Last name and ZIP/Postal Code
+- Validate checkout overview with Total Price, Shipping info, Payment info
+- Finish checkout
+- Validate Downloadable PDF Invoice after checkout
+- Redirect back to home page
 ```
