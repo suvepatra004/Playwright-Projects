@@ -1,5 +1,5 @@
 export const LoginLocators = {
-  userName: '[data-test="username"]',
-  password: '[data-test="password"]',
+  userNameInput: '[data-test="username"]',
+  passwordInput: '[data-test="password"]',
   loginButton: '[data-test="login-button"]',
 };
