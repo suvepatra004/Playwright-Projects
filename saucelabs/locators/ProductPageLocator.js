@@ -5,4 +5,8 @@ export const productPageSidebarLocator = {
   logoutLink: "#logout_sidebar_link",
   resetLink: "#reset_sidebar_link",
   menuSidebarClose: "#react-burger-cross-menu",
+  productName: "",
+  productDesc: "",
+  productPrice: "",
+  addToCartBtn: "",
 };
