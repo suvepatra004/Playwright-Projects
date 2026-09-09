@@ -9,4 +9,5 @@ export const productPageSidebarLocator = {
   productDesc: ".inventory_item_desc",
   productPrices: ".inventory_item_price",
   addToCartBtns: ".btn.btn_primary.btn_small.btn_inventory",
+  productCards: '[data-test="inventory-item"]',
 };

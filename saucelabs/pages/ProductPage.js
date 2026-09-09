@@ -57,4 +57,22 @@ export class ProductPage {
       await this.page.waitForTimeout(2000);
     }
   }
+
+  async addSpecificProductsToCart(productNames) {
+    const productCards = await this.page.locator(
+      productPageSidebarLocator.productCards,
+    );
+
+    for (const productName of productNames) {
+      const productCard = productCards.filter({
+        has: this.page.getByText(productName, { exact: true }),
+      });
+
+      await productCard
+        .locator(productPageSidebarLocator.addToCartBtns)
+        .click();
+
+      await this.page.waitForTimeout(2000);
+    }
+  }
 }
