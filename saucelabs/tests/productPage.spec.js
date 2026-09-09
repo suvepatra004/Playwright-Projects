@@ -38,4 +38,11 @@ test.describe("Product Validation Page", () => {
     await page.goBack();
     await expect(page.locator(productPageSidebarLocator.menuSidebarOpen));
   });
+
+  test("Product page validation for all products displayed", async ({
+    page,
+  }) => {
+    productPage = new ProductPage(page);
+    await productPage.validateAllProductDisplayed();
+  });
 });
