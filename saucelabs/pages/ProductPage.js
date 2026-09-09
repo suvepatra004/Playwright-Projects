@@ -51,11 +51,10 @@ export class ProductPage {
 
   async addAllProductsToCart() {
     const buttons = this.page.locator(productPageSidebarLocator.addToCartBtns);
-    const buttonCount = buttons.count();
 
-    for (let i = 0; i < buttonCount; i++) {
-      await buttons.nth(i).click();
-      await this.page.waitForTimeout(3000);
+    while ((await buttons.count()) > 0) {
+      await buttons.first().click();
+      await this.page.waitForTimeout(2000);
     }
   }
 }
