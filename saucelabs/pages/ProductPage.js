@@ -41,4 +41,21 @@ export class ProductPage {
       throw new Error("Mismatch between the product details");
     }
   }
+
+  async addFirstProductToCart() {
+    await this.page
+      .locator(productPageSidebarLocator.addToCartBtns)
+      .first()
+      .click();
+  }
+
+  async addAllProductsToCart() {
+    const buttons = this.page.locator(productPageSidebarLocator.addToCartBtns);
+    const buttonCount = buttons.count();
+
+    for (let i = 0; i < buttonCount; i++) {
+      await buttons.nth(i).click();
+      await this.page.waitForTimeout(3000);
+    }
+  }
 }

@@ -45,4 +45,11 @@ test.describe("Product Validation Page", () => {
     productPage = new ProductPage(page);
     await productPage.validateAllProductDisplayed();
   });
+
+  test.only("Validate add to cart products", async ({ page }) => {
+    productPage = new ProductPage(page);
+
+    await productPage.addFirstProductToCart();
+    await productPage.addAllProductsToCart();
+  });
 });
