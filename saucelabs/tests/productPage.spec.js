@@ -54,7 +54,7 @@ test.describe("Product Validation Page", () => {
     await productPage.addAllProductsToCart();
   });
 
-  test.only("Validate specific add to cart products", async ({ page }) => {
+  test("Validate specific add to cart products", async ({ page }) => {
     productPage = new ProductPage(page);
 
     await productPage.addSpecificProductsToCart(productsAddToCart);
