@@ -10,4 +10,9 @@ export const productPageSidebarLocator = {
   productPrices: ".inventory_item_price",
   addToCartBtns: ".btn.btn_primary.btn_small.btn_inventory",
   productCards: '[data-test="inventory-item"]',
+  filterDropDown: ".product_sort_container",
+  filterNamesAtoZ: "option[value='az']",
+  filterNamesZtoA: "option[value='za']",
+  filterPriceLowtoHigh: "option[value='lohi']",
+  filterPriceHightoLow: "option[value='hilo']",
 };

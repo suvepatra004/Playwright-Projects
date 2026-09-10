@@ -59,4 +59,61 @@ test.describe("Product Validation Page", () => {
 
     await productPage.addSpecificProductsToCart(productsAddToCart);
   });
+
+  test("Filter product names A to Z", async ({ page }) => {
+    productPage = new ProductPage(page);
+
+    await productPage.filterProductsNameAtoZ();
+
+    const productNames = await productPage.getAllProductNames();
+
+    const sortedNames = [...productNames].sort((a, b) => a.localeCompare(b));
+
+    /*
+    const isSorted = productNames.every(
+      (name, index) => name === sortedNames[index],
+    );
+    expect(isSorted).toBe(true);
+    */
+
+    expect(productNames).toEqual(sortedNames);
+  });
+
+  test("Filter product names Z to A", async ({ page }) => {
+    productPage = new ProductPage(page);
+
+    await productPage.filterProductsNameZtoA();
+
+    const productNames = await productPage.getAllProductNames();
+
+    const sortedNames = [...productNames].sort().reverse();
+    await page.waitForTimeout(4000);
+    expect(productNames).toEqual(sortedNames);
+  });
+
+  test("Filter product price low to high", async ({ page }) => {
+    productPage = new ProductPage(page);
+
+    await productPage.filterProductsPriceLowtoHigh();
+
+    const productPrices = await productPage.getAllProductPrices();
+
+    const sortedPrices = [...productPrices].sort((a, b) => a - b);
+    await page.waitForTimeout(4000);
+
+    expect(productPrices).toEqual(sortedPrices);
+  });
+
+  test("Filter product price high to low", async ({ page }) => {
+    productPage = new ProductPage(page);
+
+    await productPage.filterProductsPriceHightoLow();
+
+    const productPrices = await productPage.getAllProductPrices();
+
+    const sortedPrices = [...productPrices].sort((a, b) => b - a);
+    await page.waitForTimeout(4000);
+
+    expect(productPrices).toEqual(sortedPrices);
+  });
 });
