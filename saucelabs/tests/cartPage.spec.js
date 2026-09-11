@@ -6,6 +6,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { LoginLocators } from "../locators/LoginLocators";
 import { productPageSidebarLocator } from "../locators/ProductPageLocator";
 import { productsAddToCart } from "../test-data/productsAddToCart";
+import { cartPageLocators } from "../locators/CartPageLocator";
 
 test.describe("Cart Page Validation", () => {
   let loginPage;
@@ -27,7 +28,7 @@ test.describe("Cart Page Validation", () => {
     await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
   });
 
-  test.only("Validation of product cart Elements", async ({ page }) => {
+  test("Validation of product cart Elements", async ({ page }) => {
     cartPage = new CartPage(page);
     productPage = new ProductPage(page);
 
@@ -44,19 +45,46 @@ test.describe("Cart Page Validation", () => {
   });
 
   test("Validate Continue Shopping functionality", async ({ page }) => {
-    cartPage = new CartPage(page);
+    productPage = new ProductPage(page);
+
+    await productPage.addFirstProductToCart();
+    await productPage.clickOnCartLink();
+
+    await page.locator(cartPageLocators.continueShoppingBtn).click();
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
   });
 
-  test("Validate Single product in the Cart page", async ({ page }) => {
+  test("Validate First product in the Cart page", async ({ page }) => {
+    productPage = new ProductPage(page);
     cartPage = new CartPage(page);
+
+    const firstProductDetail = await productPage.getFirstProductDetails();
+
+    await productPage.addFirstProductToCart();
+    await productPage.clickOnCartLink();
+
+    const cartProductDetail = await cartPage.getAllCartProducts();
+
+    expect(cartProductDetail[0]).toEqual(firstProductDetail);
   });
 
-  test("Validate All products in the Cart page", async ({ page }) => {
+  test.only("Validate All products in the Cart page", async ({ page }) => {
     cartPage = new CartPage(page);
+    productPage = new ProductPage(page);
+
+    const allProductDetails = await productPage.getAllProductDetails();
+
+    await productPage.addAllProductsToCart();
+    await productPage.clickOnCartLink();
+
+    const allCartProductDetails = await cartPage.getAllCartProducts();
+
+    expect(allCartProductDetails).toEqual(allProductDetails);
   });
 
   test("Validate Specific product in the Cart page", async ({ page }) => {
     cartPage = new CartPage(page);
+    
   });
 
   test("Validate Remove product funtionality", async ({ page }) => {
