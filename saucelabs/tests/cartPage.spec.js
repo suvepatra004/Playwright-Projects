@@ -21,10 +21,45 @@ test.describe("Cart Page Validation", () => {
   });
 
   test("Validation of product cart page", async ({ page }) => {
-    cartPage = new CartPage(page);
     productPage = new ProductPage(page);
 
     await productPage.clickOnCartLink();
     await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
+  });
+
+  test.only("Validation of product cart Elements", async ({ page }) => {
+    cartPage = new CartPage(page);
+    productPage = new ProductPage(page);
+
+    // Add product to Cart to validate the Cart UI elements
+    // await page.waitForTimeout(2000);
+    await productPage.addFirstProductToCart();
+    await productPage.clickOnCartLink();
+
+    const UI = await cartPage.getCartPageElements();
+    await expect(UI.cartTitle).toBeVisible();
+    await expect(UI.checkout).toBeVisible();
+    await expect(UI.shoppingCartBtn).toBeVisible();
+    await page.waitForTimeout(2000);
+  });
+
+  test("Validate Continue Shopping functionality", async ({ page }) => {
+    cartPage = new CartPage(page);
+  });
+
+  test("Validate Single product in the Cart page", async ({ page }) => {
+    cartPage = new CartPage(page);
+  });
+
+  test("Validate All products in the Cart page", async ({ page }) => {
+    cartPage = new CartPage(page);
+  });
+
+  test("Validate Specific product in the Cart page", async ({ page }) => {
+    cartPage = new CartPage(page);
+  });
+
+  test("Validate Remove product funtionality", async ({ page }) => {
+    cartPage = new CartPage(page);
   });
 });

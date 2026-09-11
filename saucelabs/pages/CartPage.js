@@ -32,4 +32,8 @@ export class CartPage {
 
     return allCartProducts;
   }
+
+  async removeFirstProduct() {
+    await this.page.locator(cartPageLocators.removeBtn).click();
+  }
 }
