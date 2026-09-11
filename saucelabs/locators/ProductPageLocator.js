@@ -15,4 +15,5 @@ export const productPageSidebarLocator = {
   filterNamesZtoA: "option[value='za']",
   filterPriceLowtoHigh: "option[value='lohi']",
   filterPriceHightoLow: "option[value='hilo']",
+  cartLink: "[data-test='shopping-cart-link']",
 };

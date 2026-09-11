@@ -121,4 +121,69 @@ export class ProductPage {
 
     return prices.map((price) => parseFloat(price.replace("$", "")));
   }
+
+  async clickOnCartLink() {
+    await this.page.locator(productPageSidebarLocator.cartLink).click();
+  }
+
+  async getFirstProductDetails() {
+    const name = await this.page
+      .locator(productPageSidebarLocator.productNames)
+      .first()
+      .textContent();
+    const description = await this.page
+      .locator(productPageSidebarLocator.productDesc)
+      .first()
+      .textContent();
+    const price = await this.page
+      .locator(productPageSidebarLocator.productPrices)
+      .first()
+      .textContent();
+
+    return {
+      name: name.trim(),
+      description: description.trim(),
+      price: price.trim(),
+    };
+  }
+
+  async getAllProductDetails() {
+    const allNames = await this.page
+      .locator(productPageSidebarLocator.productNames)
+      .allTextContents();
+    const allDescription = await this.page
+      .locator(productPageSidebarLocator.productDesc)
+      .allTextContents();
+    const allPrices = await this.page
+      .locator(productPageSidebarLocator.productPrices)
+      .allTextContents();
+
+    const allProducts = allNames.map((_, i) => ({
+      name: allNames[i].trim(),
+      description: allDescription[i].trim(),
+      price: allPrices[i].trim(),
+    }));
+
+    return allProducts;
+  }
+
+  async getSpecificProductDetails(specificProducts) {
+    const allNames = await this.page
+      .locator(productPageSidebarLocator.productNames)
+      .allTextContents();
+    const allDescription = await this.page
+      .locator(productPageSidebarLocator.productDesc)
+      .allTextContents();
+    const allPrices = await this.page
+      .locator(productPageSidebarLocator.productPrices)
+      .allTextContents();
+
+    const allProducts = allNames.map((_, i) => ({
+      name: allNames[i].trim(),
+      description: allDescription[i].trim(),
+      price: allPrices[i].trim(),
+    }));
+
+    return allProducts.filter((p) => specificProducts.includes(p.name));
+  }
 }
