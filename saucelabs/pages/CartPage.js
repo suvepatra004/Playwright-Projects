@@ -36,4 +36,8 @@ export class CartPage {
   async removeFirstProduct() {
     await this.page.locator(cartPageLocators.removeBtn).click();
   }
+
+  async clickCheckoutButton() {
+    await this.page.locator(cartPageLocators.checkoutBtn).click();
+  }
 }
