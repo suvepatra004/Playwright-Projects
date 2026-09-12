@@ -5,5 +5,5 @@ export const cartPageLocators = {
   productNames: ".inventory_item_name",
   productDesc: ".inventory_item_desc",
   productPrices: ".inventory_item_price",
-  removeBtn: "btn.btn_secondary.btn_small.cart_button",
+  removeBtn: ".btn.btn_secondary.btn_small.cart_button",
 };
