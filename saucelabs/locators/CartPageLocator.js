@@ -6,4 +6,5 @@ export const cartPageLocators = {
   productDesc: ".inventory_item_desc",
   productPrices: ".inventory_item_price",
   removeBtn: ".btn.btn_secondary.btn_small.cart_button",
+  cartBadgeCount: '[data-test="shopping-cart-badge"]',
 };

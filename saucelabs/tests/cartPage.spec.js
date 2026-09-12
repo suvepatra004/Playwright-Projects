@@ -84,10 +84,23 @@ test.describe("Cart Page Validation", () => {
 
   test("Validate Specific product in the Cart page", async ({ page }) => {
     cartPage = new CartPage(page);
-    
   });
 
   test("Validate Remove product funtionality", async ({ page }) => {
     cartPage = new CartPage(page);
+    productPage = new ProductPage(page);
+
+    await productPage.addFirstProductToCart();
+
+    await expect(page.locator(cartPageLocators.cartBadgeCount)).toHaveText("1");
+
+    await productPage.clickOnCartLink();
+
+    await expect(page).toHaveURL("https://www.saucedemo.com/cart.html");
+
+    await expect(page.locator(cartPageLocators.productNames)).toHaveCount(1);
+    await cartPage.removeFirstProduct();
+
+    await expect(page.locator(cartPageLocators.productNames)).toHaveCount(0);
   });
 });
