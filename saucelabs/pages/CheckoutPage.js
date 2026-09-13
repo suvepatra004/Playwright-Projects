@@ -6,6 +6,8 @@ export class CheckoutPage {
   }
 
   async fillCheckoutInputDetails(details) {
-    
+    await this.page.locator(checkoutPageLocator.firstName).fill(details.fname);
+    await this.page.locator(checkoutPageLocator.lastName).fill(details.lname);
+    await this.page.locator(checkoutPageLocator.postalCode).fill(details.pin);
   }
 }
