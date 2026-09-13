@@ -1,4 +1,4 @@
-export const CheckoutOverviewLocator = {
+export const checkoutOverviewLocator = {
   title: ".title",
   productNames: ".inventory_item_name",
   productDesc: ".inventory_item_desc",
