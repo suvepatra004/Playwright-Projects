@@ -50,4 +50,15 @@ test.describe("Checkout Overview Page Validation", () => {
     await expect(checkoutOverviewElements.finishBtn).toBeVisible();
     await expect(checkoutOverviewElements.pageInfo).toBeVisible();
   });
+
+  test("Validate Cancel button functionality", async ({ page }) => {
+    checkoutOverviewPage = new CheckoutPageOverview(page);
+
+    await expect(page).toHaveURL(
+      "https://www.saucedemo.com/checkout-step-two.html",
+    );
+
+    await checkoutOverviewPage.clickCancel();
+    await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
+  });
 });
