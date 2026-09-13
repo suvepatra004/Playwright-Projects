@@ -5,9 +5,31 @@ export class CheckoutPage {
     this.page = page;
   }
 
-  async fillCheckoutInputDetails(details) {
-    await this.page.locator(checkoutPageLocator.firstName).fill(details.fname);
-    await this.page.locator(checkoutPageLocator.lastName).fill(details.lname);
-    await this.page.locator(checkoutPageLocator.postalCode).fill(details.pin);
+  async fillCheckoutInputDetails(fname, lname, pin) {
+    await this.page.fill(checkoutPageLocator.firstName, fname);
+    await this.page.fill(checkoutPageLocator.lastName, lname);
+    await this.page.fill(checkoutPageLocator.postalCode, pin);
+  }
+
+  async getCheckoutElements() {
+    return {
+      pageInfo: checkoutPageLocator.pageInfo,
+      cancel: checkoutPageLocator.cancelBtn,
+      continue: checkoutPageLocator.continueBtn,
+    };
+  }
+
+  async clickCancel() {
+    await this.page.locator(checkoutPageLocator.cancelBtn).click();
+  }
+
+  async clickContinue() {
+    await this.page.locator(checkoutPageLocator.continueBtn).click();
+  }
+
+  async getErrorMessage() {
+    return this.page
+      .locator(checkoutPageLocator.errorMessageContainer)
+      .textContent();
   }
 }
