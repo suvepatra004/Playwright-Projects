@@ -30,6 +30,13 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    use: {
+      baseURL: "https://reqres.in",
+      extraHTTPHeaders: {
+        "x-api-key": process.env.REQRES_API_KEY, // never hardcode it
+        "Content-Type": "application/json",
+      },
+    },
     trace: "on-first-retry",
   },
 
