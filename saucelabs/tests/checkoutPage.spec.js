@@ -3,13 +3,8 @@ import { BASE_URL, USERNAME, PASSWORD } from "../utils/envConfig";
 import { CartPage } from "../pages/CartPage";
 import { LoginPage } from "../pages/LoginPage";
 import { ProductPage } from "../pages/ProductPage";
-import { LoginLocators } from "../locators/LoginLocators";
-import { productPageSidebarLocator } from "../locators/ProductPageLocator";
-import { productsAddToCart } from "../test-data/productsAddToCart";
-import { checkoutPageLocator } from "../locators/checkoutPageLocator";
 import { CheckoutPage } from "../pages/CheckoutPage";
 import { checkoutData } from "../test-data/checkoutData";
-import { error } from "node:console";
 
 test.describe("", () => {
   let checkoutPage;

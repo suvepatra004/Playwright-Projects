@@ -5,11 +5,11 @@ export class CheckoutPageOverview {
     this.page = page;
   }
 
-  async getCheckoutOverviewPageElements() {
+  getCheckoutOverviewPageElements() {
     return {
-      pageInfo: checkoutOverviewLocator.title,
-      cancelBtn: checkoutOverviewLocator.cancelBtn,
-      finishBtn: checkoutOverviewLocator.finishBtn,
+      pageInfo: this.page.locator(checkoutOverviewLocator.title),
+      cancelBtn: this.page.locator(checkoutOverviewLocator.cancelBtn),
+      finishBtn: this.page.locator(checkoutOverviewLocator.finishBtn),
     };
   }
 
