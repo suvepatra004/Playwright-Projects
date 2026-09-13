@@ -61,4 +61,42 @@ test.describe("Checkout Overview Page Validation", () => {
     await checkoutOverviewPage.clickCancel();
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
   });
+
+  test.skip("Validate item total calculation", async ({ page }) => {
+    const checkoutOverviewPage = new CheckoutPageOverview(page);
+
+    const checkoutOverviewProducts =
+      await checkoutOverviewPage.getCheckoutOverviewProducts();
+
+    const calculatedTotalPrice = checkoutOverviewProducts.reduce(
+      (sum, product) => {
+        const price = parseFloat(
+          String(product.price ?? "")
+            .replace("$", "")
+            .trim(),
+        );
+
+        return sum + (Number.isNaN(price) ? 0 : price);
+      },
+      0,
+    );
+
+    const itemTotalPrice = await checkoutOverviewPage.getItemTotalPrice();
+
+    expect(itemTotalPrice).toBeCloseTo(calculatedTotalPrice, 2);
+  });
+
+  test("Validate Final Total price (ItemTotal + Tax)", async ({ page }) => {
+    checkoutOverviewPage = new CheckoutPageOverview(page);
+
+    await expect(page).toHaveURL(
+      "https://www.saucedemo.com/checkout-step-two.html",
+    );
+
+    const itemTotal = await checkoutOverviewPage.getItemTotalPrice();
+    const tax = await checkoutOverviewPage.getTax();
+    const finalTotal = await checkoutOverviewPage.getFinalTotalPrice();
+
+    expect(finalTotal).toBeLessThanOrEqual(itemTotal + tax);
+  });
 });

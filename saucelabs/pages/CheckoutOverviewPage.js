@@ -34,24 +34,28 @@ export class CheckoutPageOverview {
   }
 
   async getItemTotalPrice() {
+    // single price value i.e Item Total Price
     const priceText = await this.page
       .locator(checkoutOverviewLocator.itemPrice)
-      .allTextContents();
-    return priceText.replace("Item total: $", "").trim();
+      .textContent();
+
+    return parseFloat(priceText.replace("Item total: $", "").trim());
   }
 
   async getTax() {
-    const priceText = await this.page
+    const taxText = await this.page
       .locator(checkoutOverviewLocator.tax)
-      .allTextContents();
-    return priceText.replace("Tax: $", "").trim();
+      .textContent();
+
+    return parseFloat(taxText.replace("Tax: $", "").trim());
   }
 
-  async getTotalPrice() {
-    const priceText = await this.page
+  async getFinalTotalPrice() {
+    const totalText = await this.page
       .locator(checkoutOverviewLocator.total)
-      .allTextContents();
-    return priceText.replace("Total: $", "").trim();
+      .textContent();
+
+    return parseFloat(totalText.replace("Total: $", "").trim());
   }
 
   async clickCancel() {
