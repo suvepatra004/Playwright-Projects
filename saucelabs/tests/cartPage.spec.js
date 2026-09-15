@@ -68,7 +68,7 @@ test.describe("Cart Page Validation", () => {
     expect(cartProductDetail[0]).toEqual(firstProductDetail);
   });
 
-  test.only("Validate All products in the Cart page", async ({ page }) => {
+  test("Validate All products in the Cart page", async ({ page }) => {
     cartPage = new CartPage(page);
     productPage = new ProductPage(page);
 
