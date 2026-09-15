@@ -88,7 +88,7 @@ test.describe("Product Validation Page", () => {
     const productNames = await productPage.getAllProductNames();
 
     const sortedNames = [...productNames].sort().reverse();
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(1000);
     expect(productNames).toEqual(sortedNames);
   });
 
@@ -100,7 +100,7 @@ test.describe("Product Validation Page", () => {
     const productPrices = await productPage.getAllProductPrices();
 
     const sortedPrices = [...productPrices].sort((a, b) => a - b);
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(1000);
 
     expect(productPrices).toEqual(sortedPrices);
   });
@@ -113,7 +113,7 @@ test.describe("Product Validation Page", () => {
     const productPrices = await productPage.getAllProductPrices();
 
     const sortedPrices = [...productPrices].sort((a, b) => b - a);
-    await page.waitForTimeout(4000);
+    await page.waitForTimeout(1000);
 
     expect(productPrices).toEqual(sortedPrices);
   });

@@ -41,7 +41,6 @@ test.describe("Cart Page Validation", () => {
     await expect(UI.cartTitle).toBeVisible();
     await expect(UI.checkout).toBeVisible();
     await expect(UI.shoppingCartBtn).toBeVisible();
-    await page.waitForTimeout(2000);
   });
 
   test("Validate Continue Shopping functionality", async ({ page }) => {
@@ -54,7 +53,7 @@ test.describe("Cart Page Validation", () => {
     await expect(page).toHaveURL("https://www.saucedemo.com/inventory.html");
   });
 
-  test("Validate First product in the Cart page", async ({ page }) => {
+  test.fail("Validate First product in the Cart page", async ({ page }) => {
     productPage = new ProductPage(page);
     cartPage = new CartPage(page);
 

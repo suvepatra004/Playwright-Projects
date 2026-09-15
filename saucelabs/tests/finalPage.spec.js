@@ -53,7 +53,7 @@ test.describe("Final Page Validation", () => {
 
     const { pageInfo, backHomeBtn, generatePdfBtn } =
       await finalPage.getFinalPageElements();
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     await expect(pageInfo).toBeVisible();
     await expect(backHomeBtn).toBeVisible();

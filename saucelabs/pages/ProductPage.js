@@ -1,4 +1,5 @@
 import { productPageSidebarLocator } from "../locators/ProductPageLocator";
+import { expect } from "@playwright/test";
 
 export class ProductPage {
   constructor(page) {
@@ -54,7 +55,7 @@ export class ProductPage {
 
     while ((await buttons.count()) > 0) {
       await buttons.first().click();
-      await this.page.waitForTimeout(2000);
+      // await this.page.waitForTimeout(2000);
     }
   }
 
@@ -72,7 +73,7 @@ export class ProductPage {
         .locator(productPageSidebarLocator.addToCartBtns)
         .click();
 
-      await this.page.waitForTimeout(2000);
+      // await this.page.waitForTimeout(2000);
     }
   }
 
@@ -141,30 +142,37 @@ export class ProductPage {
       .textContent();
 
     return {
-      name: name.trim(),
-      description: description.trim(),
-      price: price.trim(),
+      name: name?.trim(),
+      description: description?.trim(),
+      price: price?.trim(),
     };
   }
 
   async getAllProductDetails() {
+    const productCards = this.page.locator(
+      productPageSidebarLocator.productCards,
+    );
+
+    // Added an Explicit wait for allTextContents() until a Product mounted in Product page
+    await expect(productCards.first()).toBeVisible();
+
     const allNames = await this.page
       .locator(productPageSidebarLocator.productNames)
       .allTextContents();
-    const allDescription = await this.page
+
+    const allDescriptions = await this.page
       .locator(productPageSidebarLocator.productDesc)
       .allTextContents();
+
     const allPrices = await this.page
       .locator(productPageSidebarLocator.productPrices)
       .allTextContents();
 
-    const allProducts = allNames.map((_, i) => ({
-      name: allNames[i].trim(),
-      description: allDescription[i].trim(),
+    return allNames.map((name, i) => ({
+      name: name.trim(),
+      description: allDescriptions[i].trim(),
       price: allPrices[i].trim(),
     }));
-
-    return allProducts;
   }
 
   async getSpecificProductDetails(specificProducts) {
