@@ -65,4 +65,6 @@ export class CheckoutPageOverview {
   async clickFinish() {
     await this.page.locator(checkoutOverviewLocator.finishBtn).click();
   }
+
+  
 }
