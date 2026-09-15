@@ -19,35 +19,44 @@ secret_sauce
 
 ---
 
-#### Pages currently implemented in the Saucelabs project
+#### Project overview
+
+This project is a Playwright automation suite for the SauceDemo website. It tests the main e-commerce flow using the Page Object Model, where each page has its own class and locator file.
+
+---
+
+#### Pages covered in the project
 
 ```
 - Login Page
-- Product Lists / Inventory Page
-- Product Page
+- Inventory / Product List Page
+- Product Detail Page
 - Cart Page
-- Sidebar menu (All Items, About, Logout, Reset App State)
+- Sidebar Menu
 - Checkout Page
 - Checkout Overview Page
+- Final Page / Order Confirmation Page
 ```
 
 ---
 
 ### Current project status
 
-The saucedemo Playwright project currently uses page objects and locators for the main login, product, cart, checkout, and checkout overview flows.
+The Saucelabs project currently includes automation for the main user journey from login to final order confirmation.
 
-The implemented test files in the workspace are:
+The main test files in the project are:
 
 ```
 - cartPage.spec.js
 - checkoutPage.spec.js
 - checkoutOverview.spec.js
+- finalPage.spec.js
 - productPage.spec.js
 - saucedemo.spec.js
+- example.spec.js
 ```
 
-The current page object files are:
+The main page object files are:
 
 ```
 - LoginPage.js
@@ -55,60 +64,89 @@ The current page object files are:
 - CartPage.js
 - CheckoutPage.js
 - CheckoutOverviewPage.js
+- FinalPage.js
 ```
+
+The locator files are:
+
+```
+- LoginLocators.js
+- ProductPageLocator.js
+- CartPageLocator.js
+- CheckoutPageLocator.js
+- CheckoutOverviewLocator.js
+- FinalPageLocator.js
+```
+
+---
 
 ### Implemented actions
 
-#### 1. Login Page
+#### 1. Login flow
 
 ```
 - Enter username and password
-- Click the login button
-- Validate that the user reaches the inventory page
+- Click login
+- Verify the user lands on the inventory page
 ```
 
-#### 2. Product / Inventory Page
+#### 2. Inventory / product flow
 
 ```
-- Validate that product names, descriptions, prices, and add-to-cart buttons are shown
-- Add the first product, all products, or specific products to the cart
-- Open the cart page from the cart icon
-- Filter products by name A-Z, Z-A, price low-high, and price high-low
-- Open the sidebar menu and use About, Logout, and Reset App State options
+- Validate products are displayed
+- Add a single product to cart
+- Add all products to cart
+- Add specific products to cart
+- Open cart from the cart icon
+- Filter products by A-Z, Z-A, low-high, and high-low
+- Use sidebar actions such as About, Logout, and Reset App State
 ```
 
-#### 3. Product Page
+#### 3. Cart flow
 
 ```
-- Add a product to the cart
-- Open the cart link
-- Use product details helpers for the first product and all products
+- Read cart page elements
+- Get product details from cart
+- Remove the first product
+- Continue shopping
+- Go to checkout
 ```
 
-#### 4. Cart Page
+#### 4. Checkout flow
 
 ```
-- Read cart elements such as title, continue shopping button, and checkout button
-- Get all products in the cart from the page
-- Remove the first product from the cart
-- Click checkout and continue shopping
+- Enter first name, last name, and postal code
+- Continue to the next step
+- Cancel checkout
+- Read validation errors for missing fields
 ```
 
-#### 5. Checkout Page
+#### 5. Checkout overview flow
 
 ```
-- Fill first name, last name, and postal code
-- Click continue or cancel
-- Read error messages for missing checkout form data
+- Validate overview page elements
+- Read products, item total, tax, and total values
+- Cancel checkout
+- Finish checkout
 ```
 
-#### 6. Checkout Overview Page
+#### 6. Final page / order confirmation flow
 
 ```
-- Validate page title, cancel button, and finish button
-- Read product details from checkout overview
-- Read item total, tax, and total values
-- Click cancel or finish
+- Reach the order confirmation page after finishing checkout
+- Validate page title, success message, and action buttons
+- Check that the Back Home button is visible and works
+- Validate the presence of the Generate PDF button
+- Confirm the success message: Thank you for your order!
+- Redirect back to the inventory page from the Back Home button
 ```
 
-The project currently covers the main SauceDemo flow from login to checkout and checkout overview. The PDF invoice download flow is not represented in the implemented page objects or tests.
+---
+
+### Overall summary
+
+This project covers the full purchase flow in SauceDemo, starting from login and ending at the final order confirmation page.
+
+The structure is organized with reusable page objects and locators, which makes the tests easier to maintain and extend.
+
+The current project scope includes the final confirmation page, but the downloadable PDF invoice feature is still partially handled and is not fully developed as a complete assertion flow.
