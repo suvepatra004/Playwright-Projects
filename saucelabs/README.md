@@ -1,32 +1,67 @@
 # Saucelabs Playwright Project
 
-This project is a Playwright automation project for the SauceDemo website.
+This project is a Playwright automation project for the SauceDemo website. It covers the main purchase flow from login to final order confirmation using the Page Object Model.
 
 ## Project purpose
 
-- Automate login, product listing, cart, checkout, and checkout overview flows.
-- Use page object model classes to separate page actions from test logic.
-- Keep locators and test data in separate folders for easier maintenance.
+- Automate the SauceDemo login process.
+- Validate inventory and product actions.
+- Test cart operations and checkout steps.
+- Validate the checkout overview page and final confirmation page.
+- Keep page logic, locators, and test data organized in separate folders.
 
 ## Project structure
 
-- Pages folder contains page object classes such as LoginPage, ProductPage, CartPage, CheckoutPage, and CheckoutOverviewPage.
-- Locators folder contains selector definitions for each page.
-- Tests folder contains Playwright test files that validate the main user flows.
-- Test data folder contains sample checkout and product data.
-- Utils folder contains configuration values such as base URL and login credentials.
+- Pages folder contains page object classes for login, products, cart, checkout, checkout overview, and final confirmation.
+- Locators folder contains CSS selector definitions for each page.
+- Tests folder contains Playwright tests for the main user flows.
+- Test-data folder contains sample checkout and product-related test data.
+- Utils folder contains environment configuration such as base URL and login credentials.
 
-## Main workflows
+## Main workflows covered
 
-- Login with a valid SauceDemo user.
-- View and filter products on the inventory page.
+- Login with a valid user.
+- View and validate products on the inventory page.
 - Add products to the cart.
-- Open and validate the cart page.
-- Fill checkout information and continue through checkout.
-- Validate the checkout overview page before finishing the order.
+- Open the cart and validate cart items.
+- Continue shopping and go to checkout.
+- Fill customer details in the checkout form.
+- Validate the checkout overview details.
+- Finish checkout and reach the final page.
+- Validate the success message and Back Home action.
+
+## Current pages implemented
+
+- Login Page
+- Inventory / Product List Page
+- Product Page
+- Cart Page
+- Sidebar Menu
+- Checkout Page
+- Checkout Overview Page
+- Final Page / Order Confirmation Page
+
+## Current test files
+
+- cartPage.spec.js
+- checkoutPage.spec.js
+- checkoutOverview.spec.js
+- finalPage.spec.js
+- productPage.spec.js
+- saucedemo.spec.js
+- example.spec.js
+
+## Current page object files
+
+- LoginPage.js
+- ProductPage.js
+- CartPage.js
+- CheckoutPage.js
+- CheckoutOverviewPage.js
+- FinalPage.js
 
 ## Notes
 
-- The project uses Playwright and JavaScript files.
-- The implemented tests focus on the main SauceDemo user journey from login to checkout overview.
-- A downloadable PDF invoice flow is not implemented in the current workspace.
+- The project uses Playwright with JavaScript files.
+- The current automation covers the main SauceDemo purchase journey from login to final confirmation.
+- The PDF invoice download flow is not fully implemented in the current workspace.
