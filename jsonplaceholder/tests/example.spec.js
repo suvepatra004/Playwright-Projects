@@ -9,4 +9,5 @@ test("JSONPlaceHolder page validation", async ({ request }) => {
   console.log(await response.json());
 
   expect(response.status()).toBe(200);
+  expect(response.ok).toBeTruthy();
 });
