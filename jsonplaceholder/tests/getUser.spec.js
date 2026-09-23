@@ -56,4 +56,19 @@ test("Validate the First User", async ({ request }) => {
       website: expect.any(String),
     }),
   );
+
+  expect(firstUser.email).toContain("@");
+
+  expect(
+    typeof firstUser.id === "number" ||
+      typeof firstUser.username === "string" ||
+      typeof firstUser.website === "string" ||
+      typeof firstUser.address === "object",
+  ).toBe(true);
+
+  // Negetive Scenario
+  expect(firstUser.id).not.toBe("String"); // method 1
+  expect(typeof firstUser.name).not.toBe("number"); // method 2
+  expect(firstUser.email).not.toEqual(expect.any(Number)); // method 3
+  expect(firstUser.address).not.toBeNull();
 });
